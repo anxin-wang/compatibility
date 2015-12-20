@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <style>
+        #wrapper {
+            width:300px;
+            height:200px;
+            background:aqua;
+        }
+
+        #left {
+            float:left;
+            width:150px;
+            height:100%;
+            background:silver;
+        }
+
+        #right {
+            float:right;
+            width:150px;
+            height:100%;
+            background:orange;
+            word-wrap:break-word;
+        }
+        /*修正方法一*/
+        #right {
+            _margin-left:-6px;
+        }
+        /*或者*/
+        #right {
+            _width:144px;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    在IE6中父容器底部灵异的多出了一个“影”字，而在IE7+以及Firefox等其它浏览器中没有这种现象，这个Bug也经常被叫做“IE6注释Bug”、“IE6重复字符Bug”和“歌剧院魅影”等不同的名字。
+</h1>
+<p>
+    为何会出现歌剧院魅影？
+    目前对该Bug还没有官方的解释，至今被广泛认可的一种说法是IE6浏览器对注释的解释存在Bug引起的，从而出现“3像素Bug”后遗症而产生的，下边这段代码就会在IE6下产生诡异的歌剧魅影效果。
+
+</p>
+<div id="wrapper">
+
+    <div id="left">Left</div>
+
+    <!--我是注释-->
+    <h1>修正方法二：注释前加条件判断</h1>
+    <!--[if !IE]>我是注释<![endif]-->
+
+    <div id="right">Right 歌剧院魅影</div>
+
+</div>
+</body>
+</html>

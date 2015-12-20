@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title></title>
+    <style>
+        /***** Attribute Hacks ******/
+
+        /* IE6 */
+        #once { _color: blue }
+
+        /* IE6, IE7 */
+        #doce { *color: blue; /* or #color: blue */ }
+
+        /* Everything but IE6 */
+        #diecisiete { color/**/: blue }
+
+        /* IE6, IE7, IE8 */
+        #diecinueve { color: blue\9; }
+
+        /* IE7, IE8 */
+        #veinte { color/*\**/: blue\9; }
+
+        /* IE6, IE7 -- acts as an !important */
+        #veintesiete { color: blue !ie; } /* string after ! can be anything */
+
+        /* IE8 */
+        #anotherone  {color: blue\0/;} /* must go at the END of all rules */
+
+
+
+
+    </style>
+    <link rel="stylesheet" href="">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+<body>
+
+<p>一、CSS hack</p>
+
+<code>
+All except IE5
+selector { property/**/: value; }
+
+All except IE5/Mac
+/*\*/ selector { property:value; } /**/
+
+IE5/Mac
+/*\*//*/ selector { property:value; } /**/
+
+All except IE5.5
+selector { property: /**/value; }
+
+IE <= 5.5
+selector { property:value; p\roperty: normal-value; }
+
+All except IE <= 6
+html>body selector { property:value; }
+
+IE <= 6
+/*\*/ * html selector { property:value; } /**/
+
+All except IE6 standards
+selector { property /**/: value; }
+
+IE6+ quirks and IE5 (= all IE/Win quirks)
+* html selector { property /**/: value; }
+
+IE6
+selector { _property:value; }
+* html selector { property:value; }
+
+IE <= 7
+html >/**/body selector { property:value; }
+body*selector{ property:value; }
+selector { property:value !important!;}
+selector { property:value !inIE;}
+
+IE7
+*:first-child+html selector { property:value; }
+*+html selector { property:value; }
+selector { .property:value; }
+selector { `property:value; }
+selector { ~property:value; }
+selector { !property:value; }
+selector { @property:value; }
+selector { #property:value; }
+selector { $property:value; }
+selector { %property:value; }
+selector { ^property:value; }
+selector { &property:value; }
+selector { *property:value; }
+selector { (property:value; }
+selector { )property:value; }
+selector { =property:value; }
+selector { +property:value; }
+selector { [property:value; }
+selector { ]property:value; }
+selector { {property:value; }
+selector { |property:value; }
+selector { ,property:value; }
+selector { <property:value; }
+selector { >property:value; }
+selector { /property:value; }
+selector { ?property:value; }
+
+IE >= 7
+selector { property /*\**/: value\9; }
+
+IE < 8
+selector\ { property:value; }
+
+IE 8
+selector { property:value\9; }
+selector { property:value\0; }
+
+IE8 & IE9
+selector { property:value; \ ;}
+selector { property:value;\0/;}
+
+IE9
+:root selector { property:value \ ;}
+:root selector { property:value \0;}
+@media all and (min-width:0) { selector { property:value \0/; } }
+
+IE9 & Opera 10
+:root selector { property:value\0;}
+
+IE
+selector { *property:value; }
+
+Opera 7
+@ Media all and (min-width: 0px) { selector { property:value; } }
+
+Opera <= 9
+@media all and (min-width: 0px){ head~body selector { property:value; } }
+html:first-child selector { property:value; }
+
+Opera <= 9.5
+@media all and (min-width: 0px) { html:first-child selector { property:value; } }
+
+Opera >= 9.5
+x:-o-prefocus, selector { property:value; }
+
+Opera < 10 & Chrome
+selector { -bracket-:hack(;property:value;); }
+
+Opera >= 10
+@media not all and (-webkit-min-device-pixel-ratio:0) { selector { property:value; } }
+
+Opera
+@media all and (min-width: 0px){ selector { property:value; } }
+
+Opera & IE <= 6
+head: first-child + body selector { property:value; }
+
+Safari 3
+selector:not(:root:root) { property:value; }
+
+Safari
+@media all and (-webkit-min-device-pixel-ratio: 0) { selector { property:value; } }
+html:lang(en)>body selector { property:value; }
+
+Mozilla & Safari
+html: not ([dummy]) selector { property:value; }
+
+Chrome & Safari
+@media screen and (-webkit-min-device-pixel-ratio:0) { selector { property:value; } }
+
+Chrome
+body:nth-of-type(1) selector { color: #333333; }
+selector { (-bracket-:hack;property:value;); }
+selector { -bracket-:hack[;property:value;]; }
+
+Firefox 1.5 & 2
+body:empty selector { property:value; }
+
+Firefox >= 1.5
+@-moz-document url-prefix() { selector { property:value; } }
+
+Firefox 3
+html&gt;/**/body .className, x:-moz-any-link, x:default { selector { property:value; } }
+
+Firefox 4-6
+:-moz-any(selector} { property:value; }
+
+Firefox
+@-moz-document url-prefix() { selector { property:value; } }
+html&gt;/**/body selector { property:value; }
+
+    /*另一篇*/
+    background-color:blue; 各个浏览器都认识，这里给firefox用；
+    background-color:red\9;\9所有的ie浏览器可识别；
+    background-color:yellow\0; \0 是留给ie8的，但笔者测试，发现最新版opera也认识，汗。。。不过且慢，后面自有hack写了给opera认的，所以，\0我们就认为是给ie8留的；
+    +background-color:pink; + ie7定了；
+    _background-color:orange; _专门留给神奇的ie6；
+    :root #test { background-color:purple\9; } :root是给ie9的，网上流传了个版本是 :root #test { background-color:purple\0;}，呃。。。这个。。。，新版opera也认识，所以经笔者反复验证最终ie9特有的为:root 选择符 {属性\9;}
+    @media all and (min-width:0px){ #test {background-color:black\0;} } 这个是老是跟ie抢着认\0的神奇的opera，必须加个\0,不然firefox，chrome，safari也都认识。。。
+    @media screen and (-webkit-min-device-pixel-ratio:0){ #test {background-color:gray;} }最后这个是浏览器新贵chrome和safari的。
+    好了就这么多了，特别注意以上顺序是不可以改变的。css hack虽然可以解决个浏览器之间css显示的差异问题，但是毕竟不符合W3C规范，我们平时写css最好是按照标准来，这样对我们以后维护也是大有好处的，实在不行再用。
+
+    <!-- 再一篇-->
+    * IE8 及 低版本: 在CSS属性后置”\9″, 如 height:1000px\9;
+    * IE7 及 低版本: 在CSS属性前置”*”, 如 *height:1000px;
+    * IE6 及 低版本: 在CSS属性前置”_”, 如 _height:1000px;
+
+    <!-- 再一篇-->
+    #test {
+
+    color:red; /*所有浏览器*/
+
+    +color:blue; /*所有 IE */
+
+    _color:green; /*IE 6及以下*/
+
+    _color /**/:pink; /*IE 5*/
+
+    +color:blue\9; /*IE 5 以上*/
+
+    }
+
+
+</code>
+
+
+<p>二、CSS HACKS in (X)HTML</p>
+<code>
+
+Opera
+<link rel="stylesheet" type="text/nonsense" href="style.css" />
+
+Mozilla
+<link rel="extra-keyword stylesheet" type="text/css" href="style.css"/>
+
+Safari
+<link rel="extra-keyword stylesheet" type="text/css" href="style.css"/>
+</code>
+
+<p>三、IE条件判断语句</p>
+IE (x = version #)
+<!--[if IE x]> CODE <![endif]-->
+<!--[if IE x]> CODE <![endif]-->
+<!--[if gte IE x]> CODE <![endif]-->
+<!--[if gt IE x]> CODE <![endif]-->
+<!--[if lte IE x]> CODE <![endif]-->
+<!--[if lt IE x]> CODE <![endif]-->
+<!--[!IE x]> CODE <![endif]-->
+
+区分IE不同版本的代码：
+* <!--[if IE 8]> = IE8版本
+* <!--[if lt IE 8]> = IE7版本以低版本
+* <!--[if gte IE 8]> = IE8版本及高版本
+<!--[if !IE]><!--> 除IE外都可识别 <!--<![endif]-->
+
+<!--[if IE]> 所有的IE可识别 <![endif]-->
+
+<!--[if IE 6]> 仅IE6可识别 <![endif]-->
+
+<!--[if lt IE 6]> IE6以及IE6以下版本可识别 <![endif]-->
+
+<!--[if gte IE 6]> IE6以及IE6以上版本可识别 <![endif]-->
+
+<!--[if IE 7]> 仅IE7可识别 <![endif]-->
+
+<!--[if lt IE 7]> IE7以及IE7以下版本可识别 <![endif]-->
+
+<!--[if gte IE 7]> IE7以及IE7以上版本可识别 <![endif]-->
+
+<!--[if IE 8]> 仅IE8可识别 <![endif]-->
+
+<!--[if IE 9]> 仅IE9可识别 <![endif]-->
+
+运算符：!<br>lt<br>lte<br>gt<br>gte<br>( ) eg:[if !(IE 7)]<br>& eg：[if (gt IE 5)&(lt IE 7)]<br>| eg:[if (IE 6)|(IE 7)]
+
+Examples:
+<- [If gte IE x]> <style type="text/css"> selector { property:value; } </ style> <! [Endif] ->
+
+or
+
+<- [If gte IE x]> <style type="text/css"> @ import url ('styles.css') </ style> <[endif] ->
+
+Only IE
+<!--[if IE]> CODE <![endif]-->
+
+
+All browsers except IE
+<!--[if !IE]>< --> CODE <!-- ><![endif]-->
+
+<p>四、HTML条件判断，给出不同的className</p>
+<p>第三个办法是由Paul Irish发起的。它实现的办法是通过IE条件判断来给HTML设置不同的className，然后在CSS中通过给不同的className下的后代设置不同的样式即可实现。这个办法比较可行，也不会有任何W3C验证的问题。
+</p>
+<code>
+
+
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class=""> <!--<![endif]-->
+
+</code>
+
+
+
+
+
+
+</body>
+</html>

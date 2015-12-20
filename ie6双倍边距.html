@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+<body>
+解决IE6 的浮动元素的双倍边距问题
+对一个div设置了float:left 和 margin-left:100px 那么在IE6中，这个bug就会出现。您只需要多设置一个display即可，
+代码如下：
+
+
+div {
+float:left;
+margin:5px;/*IE下理解为10px*/
+display:inline;/*IE下再理解为5px*/
+}
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>IE7以下绝对定位position被后面元素遮挡问题</title>
+</head>
+<body>
+<div>
+    最近做项目，经常遇到IE7以下浏览器中。一些悬浮框被一些元素遮挡的问题，这些元素一般都是设置了position的。
+    问题的根本在不是被设置绝对定位的元素上，而是在设置了相对定位的父元素上。
+
+    我查阅了一些资料。设置了相对定位的父元素如果没有设置z-index属性，后面有元素设置position:relative的时候，
+    则后面的元素就会遮挡掉前面的元素，不管前面的元素设置了多大的z-index
+
+    解决的方法我总结一下
+
+    1.对遮挡元素中设置z-index:0;初始化掉。
+    2.在被遮挡的父元素中，也就是设置了相对定位的元素中设置z-index属性，最好比遮挡元素要大一些。
+
+
+    在平时编写中，编写了position:relative后就要及时在后面设置z-index:0;
+    如果有了这个意识，那以后的维护工作会相对轻松一些，这是我的个人看法。
+</div>
+
+</body>
+</html>

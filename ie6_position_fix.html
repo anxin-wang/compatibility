@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title></title>
+    <style>
+        /*Make position:fixed work in IE6!*/
+
+        .fixed-top /* position fixed Top */
+        {
+            position: fixed;
+            bottom: auto;
+            top: 0;
+        }
+
+        .fixed-bottom /* position fixed Bottom */
+        {
+            position: fixed;
+            bottom: 0;
+            top: auto;
+        }
+
+        .fixed-left /* position fixed Left */
+        {
+            position: fixed;
+            right: auto;
+            left: 0;
+        }
+
+        .fixed-right /* position fixed right */
+        {
+            position: fixed;
+            right: 0;
+            left: auto;
+        }
+
+        * html, * html body /* IE6 Fixed Position Jitter Fix */
+        {
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        * html .fixed-top /* IE6 position fixed Top */
+        {
+            position: absolute;
+            bottom: auto;
+            top: expression(eval(document.documentElement.scrollTop));
+        }
+
+        * html .fixed-right /* IE6 position fixed right */
+        {
+            position: absolute;
+            right: auto;
+            left: expression(eval(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)-(parseInt(this.currentStyle.marginLeft,10)||0)-(parseInt(this.currentStyle.marginRight,10)||0));
+        }
+
+        * html .fixed-bottom /* IE6 position fixed Bottom */
+        {
+            position: absolute;
+            bottom: auto;
+            top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+        }
+
+        * html .fixed-left /* IE6 position fixed Left */
+        {
+            position: absolute;
+            right: auto;
+            left: expression(eval(document.documentElement.scrollLeft));
+        }
+
+    </style>
+    <link rel="stylesheet" href="">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<code>
+    #top{
+    position:fixed;
+    bottom:0;
+    right:20px;}
+
+</code>
+
+<p>变成</p>
+<code>
+    #top{
+    position:fixed;
+    _position:absolute;
+    bottom:0;
+    right:20px;
+    _bottom:auto;
+    _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+
+</code>
+<p>
+    right 跟 left 属性可以用绝对定位的办法解决，而 top 跟 bottom 就需要用上面的表达式来实现。其中在_position:absolute;中的_符号只有 IE6 才能识别，目的是为了区分其他浏览器。
+</p>
+<p>
+    使元素固定在浏览器的顶部
+</p>
+<code>
+
+    #top{
+    _position:absolute;
+    _bottom:auto;
+    _top:expression(eval(document.documentElement.scrollTop));}
+
+</code>
+<p>
+    使元素固定在浏览器的底部
+</p>
+<code>
+    #bottom{
+    _position:absolute;
+    _bottom:auto;
+    _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+
+</code>
+<p>
+    这两段代码只能实现在最底部跟最顶部，你可以使用 _margin-top:10px; 或者 _margin-bottom:10px; 修改其中的数值控制元素的位置。
+</p>
+<p>
+    现在，问题还没有完全解决。在用了上面的办法后，你会发现：被固定定位的元素在滚动滚动条的时候会闪动。解决闪动问题的办法是在 CSS 文件中加入:
+</p>
+<code>
+    *html{
+    background-image:url(about:blank);
+    background-attachment:fixed;}
+
+</code>
+</body>
+</html>
