@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>position:relative/absolute无法冲破的等级</title>
+    <style>
+        *{margin:0; padding:0; list-style:none;}
+        #example1 li {width:100px; height:100px; margin:0 5px 0 0; background:#000; float:left; position:relative; z-index:1;}
+        #example1 li span {width:200px; height:200px; background:#c00; position:absolute; top:0; left:100px; z-index:1000;}
+
+
+
+
+        #example2 li {height:100px; margin:0 5px 0 0; float:left; width:100px;}
+        #example2 li a {display:block; height:100px; width:100px;  background:#000;}
+        #example2 li a:hover {position:relative; z-index:1; }
+        #example2 li span {display:none;}
+        #example2 li a:hover span {display:block; width:200px; height:200px; background:#c00; position:absolute; top:0; left:100px; z-index:1000; }
+
+
+
+        #example3 li {height:100px; margin:0 5px 0 0; float:left; width:100px; background:#000;}
+        #example3 li:hover {position:relative; z-index:1;}
+        #example3 li span {display:none;}
+        #example3 li:hover span {display:block; width:200px; height:200px; background:#c00; position:absolute; top:0; left:100px; z-index:1000; }
+
+    </style>
+    <link rel="stylesheet" href="">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+<body>
+<ul id="example1">
+    <li>第一块</li>
+    <li><span>第二块</span></li>
+    <li>第三块</li>
+    <li>第四块</li>
+    <li>第五块</li>
+</ul>
+
+<p>
+    如果我我们设定LI为position:relative;设置span为position:absolute;那么我们会发现无论SPAN的z-index值设置得再高都将永远在后面父级的下面。
+</p>
+
+<ul id="example2">
+    <li><a href="" title=""><span>第一块</span></a></li>
+    <li><a href="" title=""><span>第二块</span></a></li>
+    <li><a href="" title=""><span>第三块</span></a></li>
+    <li><a href="" title=""><span>第四块</span></a></li>
+    <li><a href="" title=""><span>第五块</span></a></li>
+</ul>
+
+<p>
+    如果不介意IE6或是IE5.X这样的浏览器我们还可以把代码再做简化
+</p>
+
+<ul id="example3">
+    <li><span>第一块</span></li>
+    <li><span>第二块</span></li>
+    <li><span>第三块</span></li>
+    <li><span>第四块</span></li>
+    <li><span>第五块</span></li>
+</ul>
+
+
+
+</body>
+</html>

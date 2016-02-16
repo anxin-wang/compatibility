@@ -16,6 +16,71 @@
       <![endif]-->
 </head>
 <body>
+<p>
+    <style>
+
+        a {}
+
+        a span {color: green;}
+
+        a:hover {}
+
+        a:hover span {color: red; }
+
+    </style>
+
+    <a href=”http://www.taobao.com“> 淘宝网 <span> 淘你喜欢 </span></a>,在ie6中“淘你喜欢”不会变色。
+    所以IE6的bug就是如果a 与 a:hover 的css定义是一样的，也就是说如果a:hover 中没有样式的改变，hover就不会被触发。
+    但如果在a:hover{}增加一些特定的属性，例如:
+    a:hover{border:none;}
+
+    或者
+
+    a:hover{padding:0;}
+
+    又或者
+
+    a:hover{background: none;}这样的属性还包括direction/text-align/text-indent/float/overflow/position …… 等等。
+    此时hover就可以触发了。
+
+</p>
+
+<h1>例子</h1>
+<p>
+    .DigitalImage a:hover {
+
+    position: relative;
+
+    }<br/>
+
+    .DigitalImage a img {
+
+    position: static;
+
+    width: 80px;
+
+    height: 60px;
+
+    border: none;
+
+    }<br/>
+
+    .DigitalImage a:hover img {
+
+    position: absolute;
+
+    width: 160px;
+
+    height: 120px;
+
+    border: 1px solid #CCC;
+
+    left: -40px;
+
+    top: -30px;
+
+    }<br/>
+</p>
 
 </body>
 </html>
